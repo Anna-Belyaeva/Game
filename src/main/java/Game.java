@@ -2,12 +2,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
-    List<Player> playersList = new ArrayList<>();
+    private List<Player> playersList = new ArrayList<>();
+
+    public boolean containsName(String playerName) {
+        for (Player player : playersList) {
+            if (player.getName().equals(playerName)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Player findByPlayerName(String playerName) {
 
         for (Player player : playersList) {
-            if (player.getName() == playerName) {
+            if (player.getName().equals(playerName)) {
                 return player;
             }
         }
@@ -20,19 +29,18 @@ public class Game {
             String newNamePlayer = player.getName() + "1";
             player.setName(newNamePlayer);
         }
-         playersList.add(player);
+        playersList.add(player);
     }
-
 
     public int getPlayerStrength(String playerName) {
 
-        for (Player player : playersList)
-            if (player.getName() == playerName) {
+        for (Player player : playersList) {
+            if (player.getName().equals(playerName)) {
                 return player.getStrength();
             }
+        }
         return 0;
     }
-
 
     public int round(String playerName1, String playerName2) {
 

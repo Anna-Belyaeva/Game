@@ -13,7 +13,7 @@ public class GameTest {
     public void shouldRegisterPlayers() {
         players.register(player1);
 
-        Assertions.assertEquals(true, players.playersList.contains(player1));
+        Assertions.assertEquals(true, players.containsName("Nikita"));
     }
 
     @Test
@@ -21,7 +21,7 @@ public class GameTest {
         players.register(player3);
         players.register(player4);
 
-        Assertions.assertEquals(true, players.playersList.contains(player4));
+        Assertions.assertEquals(true, players.containsName("Victoria1"));
     }
 
     @Test
@@ -73,10 +73,10 @@ public class GameTest {
 
     @Test
     public void shouldWinSecondPlayer() {
-        players.register(player1);
         players.register(player3);
+        players.register(player4);
 
-        Assertions.assertEquals(2, players.round("Victoria", "Nikita"));
+        Assertions.assertEquals(2, players.round("Victoria", "Victoria1"));
     }
 
     @Test
@@ -99,4 +99,17 @@ public class GameTest {
         });
     }
 
+    @Test
+    public void shouldFindName() {
+        players.register(player1);
+
+        Assertions.assertEquals(true, players.containsName("Nikita"));
+    }
+
+    @Test
+    public void notShouldFindName() {
+        players.register(player1);
+
+        Assertions.assertEquals(false, players.containsName("Olia"));
+    }
 }
